@@ -1,31 +1,40 @@
 // Coding Bootcamp Project 2020
 // Andreas Salcedo
 
-float meshSize;
-int squareSize;
+int meshSize, sqrSize;
 float n;
+float[][] heights; // all z coordinates
 
 void setup() {
   size(800, 800, P3D);
-  meshSize = 50;
-  squareSize = 10;
-  noLoop();
+  //noFill();
+  fill(#1A551A);
+  meshSize = 36; // size of the grid
+  sqrSize = 10; // width of each individual square
+
+  heights = new float[meshSize][meshSize];
+  for (int y = 0; y < meshSize; y++) {
+    for (int x = 0; x < meshSize; x++) {
+      heights[x][y] = random(-10, 10);
+    }
+  }
 }
 
 void draw() {
   background(0);
-  rotateX(radians(45));
-  translate(width/5,height/5,-100);
+  stroke(255);
+
+  rotateX(radians(400));
+  translate(230, 230);
   
-  beginShape(QUAD_STRIP); 
-  for (int y = 0; y < meshSize; y++) {
+  //camera(mouseX, 400, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0); // upward axis is z
+  
+  for (int y = 0; y < meshSize-1; y++) {
+    beginShape(TRIANGLE_STRIP);
     for (int x = 0; x < meshSize; x++) {
-      n = map(noise(random(0,1)),0,1,-10,100);
-      vertex(0+(squareSize*x), 0+(squareSize*y),n);
-      vertex(squareSize+(squareSize*x), 0+(squareSize*y));
-      vertex(0+(squareSize*x), squareSize+(squareSize*y));
-      vertex(squareSize+(squareSize*x), squareSize+(squareSize*y));
+      vertex(0+(sqrSize*x), sqrSize+(sqrSize*y), heights[x][y+1]);
+      vertex(sqrSize*x, sqrSize*y, heights[x][y]);
     }
+    endShape();
   }
-  endShape();
 }
