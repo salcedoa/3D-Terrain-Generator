@@ -1,18 +1,36 @@
 // Bootcamp Project 2020
 // Andreas Salcedo
+import processing.sound.*;
+SoundFile wind;
 
 Plane land;
 Plane water;
 
+color groundColour; // will store the colour of the ground (either green or tan)
+
 void setup() {
   size(800, 800, P3D);
+
+  // sound
+  wind = new SoundFile(this, "344887__lextrack__sound-of-strong-wind.mp3");
+  wind.loop();
+  wind.amp(0.15);
+
   land = new Plane();
   water = new Plane();
   land.createSurface(-50, 100);
   water.createSurface(-5, 5);
+  
+  // decides the colour of the ground
+  if (round(random(2)) == 1) {
+    groundColour = #C6B974;
+  } else {
+    groundColour = #1A551A;
+  }
 }
 
 void draw() {
+
   // lighting effect for day night cycle controlled by millis()
   float time = millis();
   float lightPosZ = map(sin(0.0009*time), -1, 1, 170, 760);
@@ -28,6 +46,6 @@ void draw() {
   rotateX(radians(400));
   translate(100, 230);
 
-  land.draw(#1A551A);
+  land.draw(groundColour);
   water.draw(#186FB4);
 }
