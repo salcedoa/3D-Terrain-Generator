@@ -21,7 +21,8 @@ class Plane {
       endShape();
     }
   }
-
+  
+  // Generates z values using noise() and stores them in a 2d array
   void createSurface(float lowerLimit, float upperLimit) {
     heights = new float[meshSize][meshSize];
     for (int y = 0; y < meshSize; y++) {
