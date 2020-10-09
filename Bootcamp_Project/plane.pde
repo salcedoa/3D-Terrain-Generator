@@ -3,7 +3,7 @@ class Plane {
   float[][] heights; // will store all z coordinates
 
   Plane() {
-    meshSize = 36; // size of the grid
+    meshSize = 61; // size of the grid
     sqrSize = 10; // width of each individual square
   }
 
