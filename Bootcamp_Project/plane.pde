@@ -3,15 +3,13 @@ class Plane {
   float[][] heights; // all z coordinates
 
   Plane() {
-    fill(#1A551A);
     meshSize = 36; // size of the grid
     sqrSize = 10; // width of each individual square
   }
 
-  void draw() {
+  void draw(color colour) {
     noStroke();
-    rotateX(radians(400));
-    translate(230, 230);
+    fill(colour);
 
     for (int y = 0; y < meshSize-1; y++) {
       beginShape(TRIANGLE_STRIP);
