@@ -1,4 +1,4 @@
-// Coding Bootcamp Project 2020
+// Bootcamp Project 2020
 // Andreas Salcedo
 
 Plane land;
